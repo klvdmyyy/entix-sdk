@@ -1,4 +1,4 @@
-<img alt="logo" src="assets/logo-white-expanded.svg" style="margin: -20% -0% -40% -8%;"/>
+<img alt="logo" src="assets/logo-white-expanded.svg" style="margin: -20% -0% -40% -8%; padding: -20% -0% -40% -8%;" />
 
 # Entix Software Development Kit
 
