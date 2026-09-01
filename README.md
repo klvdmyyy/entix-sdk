@@ -1,4 +1,6 @@
-<img alt="logo" src="assets/logo-white-expanded-cropped.svg" width=300 style="padding: 5% 1% 5% 1%; margin: 0% 10%"/>
+<p align="center">
+    <img alt="logo" src="assets/logo-white-expanded-cropped.svg">
+</p>
 
 # Entix Software Development Kit
 
