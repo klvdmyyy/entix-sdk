@@ -1,7 +1,9 @@
 #pragma once
 
+#include "engine/Result.h"
+
 /// @brief Platform-independent entry point
-extern int EngineMain(int argc, char** argv);
+extern Result<void> EngineMain(int argc, char** argv);
 
 #if defined(ENGINE_PLATFORM_WINDOWS) & defined(ENGINE_WINDOWS_WIN32_BUILD)
     //! [entry_windows]
@@ -13,14 +15,16 @@ extern int EngineMain(int argc, char** argv);
         [[maybe_unused]] int nShowCmd
     )
     {
-        return ::EngineMain(__argc, __argv);
+        auto mainResult = ::EngineMain(__argc, __argv);
+        return mainResult.IsSuccess() ? 0 : 1;
     }
     //! [entry_windows]
 #else
     //! [entry_linux]
     int main(int argc, char** argv) // NOLINT
     {
-        return ::EngineMain(argc, argv);
+        auto mainResult = ::EngineMain(argc, argv);
+        return mainResult.IsSuccess() ? 0 : 1;
     }
     //! [entry_linux]
 #endif

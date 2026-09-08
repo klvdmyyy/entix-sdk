@@ -1,19 +1,25 @@
 #include <engine/EntryPoint.h>
 
-#include <engine/io/FileStream.h>
+#include <engine/Application.h>
 
-#include <engine/serialization/Archive.h>
+class GameLayer
+{
+public:
+    GameLayer();
+};
 
-int EngineMain(
+Result<void> EngineMain(
     [[maybe_unused]] int argc,
     [[maybe_unused]] char** argv
 )
 {
-    io::FileStream myFile("helloworld.txt", io::StreamMode::Write);
-
-    std::string myFileText = std::filesystem::current_path().string();
-
-    myFile.Write(io::ConstByteSpan{reinterpret_cast<const io::Byte*>(myFileText.data()), myFileText.size()});
-
-    return 0;
+    return Application()
+        .LoadPlugin("engine/rhi-opengl")
+        .LoadPlugin("engine/rhi-d3d11")
+        .LoadPlugin("engine/audio-sdl3")
+        .LoadPlugin("engine/client-server")
+        .LoadPlugin("engine/client-server-gns")
+        .LoadPlugin("engine/entix-gui")
+        .PushLayer<GameLayer>()
+        .Run();
 }
